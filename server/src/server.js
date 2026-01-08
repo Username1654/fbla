@@ -1,0 +1,29 @@
+import express from "express";
+import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
+const app = express();
+const PORT = 5000;
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use(
+  cors({
+      origin: "http://localhost:5173",
+      credentials:true,
+    })
+  );
+app.get("/", (req, res) => {
+  res.send("Server running");
+});
+app.get("/login", (req, res) => {
+  res.send("this is the login page");
+});
+app.get("/business", (req, res) => {
+  res.send("this is the business page");
+})
+
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
