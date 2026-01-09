@@ -1,83 +1,19 @@
-import { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import BusinessWidget from './component/businessWidget';
-import './App.css'
-import bubbleImage from './assets/bubble.gif';
+import Login from "./component/auth/Login";
+import BusinessWidget from "./component/business/businessWidget";
+import "./App.css";
+
 function App() {
-
-  const [username, setUsername] = useState('');
-  const [purpose, setPurpose] = useState('')
-  const [password, setPassword] = useState('')
-  function handleEvents(value) {
-    setUsername(value);
-    setPassword(value)
-    console.log(password)
-  }
-  function handleSubmit(e) {
-    e.preventDefault();
-    let data = {
-      password,
-      username
-    }
-    console.log(data)
-    console.log(password)
-    console.log('Submitted username:', username);
-    fetch("http://localhost:5174/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(
-            "Network response was not ok: " + response.statusText
-          );
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Success:", data);
-        localStorage.setItem("loggedIn", true);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        localStorage.setItem("verified", false);
-      });
-  }
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/business" element={} />
-          <Route path="/login" element={} />
-        </Routes>
-      </BrowserRouter>
-    <div id="bar">
-      <h1>Login</h1>
-      </div>
-      <div id="main">
-      <img src={bubbleImage} />
+    <BrowserRouter>
+      <Routes>
 
-      <form id="login-form" >
-        <h3>Login or Sign Up</h3>
-        <label>Username:</label>
-        <input value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Enter username" className='inp'/>
-        <br />
-        <label>Password:</label>
-          <input type="password" placeholder="Enter password" className='inp' onChange={(e) => setPassword(e.target.value)} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Navigate to="/login" replace />} />
 
-
-
-        <br/>
-          <button onClick={handleSubmit}>Submit</button>
-      </form>
-      <img src={bubbleImage} alt="" />
-      </div>
-
-    </>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
-export default App
+export default App;

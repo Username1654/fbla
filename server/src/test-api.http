@@ -1,0 +1,11 @@
+GET http://localhost:5000/api/login/users
+
+### Post login user
+
+POST http://localhost:5000/api/login/users
+Content-Type: application/json
+
+{
+    "username": "wazzap",
+    "password": "muhahaha"
+}

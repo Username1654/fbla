@@ -15,8 +15,8 @@ if (!fs.existsSync(dbDir)) {
 }
 console.log(`Database location: ${businessPath}`);
 
-const businessDb = new DatabaseSync(businessPath);
-const usersDb = new DatabaseSync(usersPath);
+export const businessDb = new DatabaseSync(businessPath);
+export const usersDb = new DatabaseSync(usersPath);
 businessDb.exec(
   `CREATE TABLE IF NOT EXISTS businesses(
   id TEXT PRIMARY KEY,
@@ -27,9 +27,10 @@ businessDb.exec(
 usersDb.exec(
     `CREATE TABLE IF NOT EXISTS users(
     id TEXT PRIMARY KEY,
-    name TEXT UNIQUE NOT NULL,
+    username TEXT UNIQUE NOT NULL,
     password TEXT NOT NULL,
     created_at INTEGER NOT NULL
     )`
   );
-export default { businessDb, usersDb };
+
+export default {businessDb, usersDb};

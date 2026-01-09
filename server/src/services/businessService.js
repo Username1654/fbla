@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import businessDb from "../config/businessDb.js";
+import businessDb from "../config/database.js";
 
 export function createUser(name, password) {
     const userId = uuidv4();

@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import path from "path";
+import loginRoutes from "./routes/login.routes.js"
+// import businessRoutes from "./routes/business.routes.js";
 import { fileURLToPath } from "url";
 const app = express();
 const PORT = 5000;
@@ -15,16 +17,20 @@ app.use(
     })
 );
 app.use(express.json());
+
+app.use('/api/login', loginRoutes)
 //GET rout
-app.get("/", (req, res) => {
-  res.send("Server running");
-});
-app.get("/login", (req, res) => {
-  res.send("this is the login page");
-});
-app.get("/business", (req, res) => {
-  res.send("this is the business page");
-});
+// app.get("/", (req, res) => {
+//   res.send("Server running");
+// });
+// app.get("/login", (req, res) => {
+//   res.send("this is the login page");
+// });
+// app.get("/business", (req, res) => {
+//   res.send("this is the business page");
+// });
+
+// login GET requests
 
 
 app.post("/login", (req,res) =>{
