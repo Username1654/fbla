@@ -3,6 +3,7 @@
 .env 
 .env.*
 config.json # Use if your config file contains secrets and is not a template
+database/*.db
 
 # Dependency caches
 node_modules/
