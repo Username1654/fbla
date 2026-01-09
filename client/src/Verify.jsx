@@ -4,7 +4,7 @@ export default function Verify({ onVerified }) {
   const handleCaptcha = (token) => {
     // token exists = user completed captcha
     if (token) {
-      localStorage.setItem("verified", "true");
+      localStorage.setItem("verified", true);
       onVerified();
     }
   };

@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import BusinessWidget from './component/businessWidget';
 import './App.css'
 import bubbleImage from './assets/bubble.gif';
@@ -38,15 +39,21 @@ function App() {
       })
       .then((data) => {
         console.log("Success:", data);
-        localStorage.setItem("loggedIn", "true");
+        localStorage.setItem("loggedIn", true);
       })
       .catch((error) => {
         console.error("Error:", error);
-        localStorage.setItem("verified", "false");
+        localStorage.setItem("verified", false);
       });
   }
   return (
     <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/business" element={} />
+          <Route path="/login" element={} />
+        </Routes>
+      </BrowserRouter>
     <div id="bar">
       <h1>Login</h1>
       </div>
@@ -60,18 +67,9 @@ function App() {
         <br />
         <label>Password:</label>
           <input type="password" placeholder="Enter password" className='inp' onChange={(e) => setPassword(e.target.value)} />
-        {/* <br />
 
-        <h3>Purpose?</h3>
-<label className="radio">
-  <input type="radio" name="choose" />
- - Business
-</label>
 
-<label className="radio">
-  <input type="radio" name="choose" />
-  - User
-</label> */}
+
         <br/>
           <button onClick={handleSubmit}>Submit</button>
       </form>
