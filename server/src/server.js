@@ -13,7 +13,9 @@ app.use(
       origin: "http://localhost:5173",
       credentials:true,
     })
-  );
+);
+app.use(express.json());
+//GET rout
 app.get("/", (req, res) => {
   res.send("Server running");
 });
@@ -22,6 +24,11 @@ app.get("/login", (req, res) => {
 });
 app.get("/business", (req, res) => {
   res.send("this is the business page");
+});
+
+
+app.post("/login", (req,res) =>{
+
 })
 
 app.listen(PORT, () => {

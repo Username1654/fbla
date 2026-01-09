@@ -4,6 +4,12 @@ import './index.css'
 import App from './App.jsx'
 import Verify from './Verify.jsx'
 const isVerified = localStorage.getItem("verified") === "true";
-createRoot(document.getElementById('root')).render(
-  isVerified ? <App/> : <Verify onVerified={() => window.location.reload()} />
-)
+createRoot(document.getElementById("root")).render(
+  isVerified ? (
+    <App />
+  ) : (
+    <Verify
+      onVerified={() => window.location.replace("https:/localhost:5173/")}
+    />
+  )
+);
