@@ -1,0 +1,15 @@
+#top{
+    background-color: rgb(25, 40, 55);
+    height: fit-content;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    border-bottom: 2px solid black;
+}
+#title{
+    grid-column: 2;
+}
+#login{
+   width: fit-content;
+   grid-column: 3;
+}

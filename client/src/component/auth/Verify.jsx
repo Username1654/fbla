@@ -5,7 +5,9 @@ export default function Verify({ onVerified }) {
     // token exists = user completed captcha
     if (token) {
       localStorage.setItem("verified", true);
-      onVerified();
+      window.location.replace("http://localhost:5173/page");
+        onVerified();
+
     }
   };
 
