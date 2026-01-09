@@ -1,38 +1,53 @@
-# OS and Editor Files
-.DS_Store # macOS files
-Thumbs.db # Windows files
-.idea/ # Common for JetBrains IDEs
-*.suo *.user *.userprefs # Visual Studio user-specific files
+# Environment-specific variables and secrets
+# Contains database credentials, API keys, etc.
+.env 
+.env.*
+config.json # Use if your config file contains secrets and is not a template
 
-# Dependency Caches (if any are stored in the repo)
-**/node_modules/ # Node.js dependencies
-/packages/ # .NET NuGet packages (if using package restore, these can be ignored)
+# Dependency caches
+node_modules/
+vendor/
+env/
+venv/
+target/ # Java build output
+build/
+dist/
+bin/
+obj/
 
-# Build Artifacts and Compiled Code (specific to your tech stack, e.g., Python, Java, .NET)
-/build/
-/dist/
-/target/
-[Bb]in/ # Binaries folder
-[Oo]bj/ # Object files folder
-*.pyc # Python compiled files
-*.class # Java compiled files
-
-# Log Files
+# Log files, temporary files, and runtime data
+log/
 logs/
-*.log # General log files
-*.txt # For general text-based logs if used
-*.err # Error logs
+*.log
+*.tmp
+*.temp
+npm-debug.log*
+yarn-debug.log*
 
-# Sensitive Data and Configuration Files
-.env # Environment variables file (contains credentials, API keys)
-config.json # Or other config files that might contain local/sensitive settings
-*.config # Sometimes config files have sensitive info, so handle with care (might need to negate specific ones like web.config)
+# SQL/Database specific files (ignore actual database files, track creation scripts)
+*.sqlite
+*.sqlite3
+*.db
+*.mdf
+*.ldf
+*.bak
+*.bacpac
+*.dacpac # Consider tracking this if using SQL database projects methodology
 
-# SQL Server Specific Files (if using SQL Server Data Tools (SSDT) or similar)
-*.mdf # Master Database Files (actual database files)
-*.ldf # Log Database Files
-*.bak # Database backups
-*.dacpac # Data-tier Application Packages (often generated)
-*.publish.xml # Publish profiles which may contain connection strings/passwords
-SqlSourceControl.local.config # Redgate SQL Source Control local config files
-*.rptproj.user # SSRS project user files
+# IDE and OS specific files
+.idea/         # JetBrains IDEs
+.vscode/       # VS Code
+.vs/           # Visual Studio
+*.suo
+*.user
+*.userprefs
+.DS_Store      # macOS
+Thumbs.db      # Windows
+ehthumbs.db    # Windows
+
+# Generated build artifacts
+*.pyc          # Python
+*.o            # C++
+*.class        # Java
+/public/assets # If assets are generated and not source
+/client/dist   # If front-end build is a sub-directory
