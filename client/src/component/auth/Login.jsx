@@ -14,7 +14,7 @@ export default function Login() {
     e.preventDefault();
     let data = {
       password,
-      username,
+      username
     };
     console.log(data);
     console.log(password);

@@ -19,11 +19,23 @@ export const businessDb = new DatabaseSync(businessPath);
 export const usersDb = new DatabaseSync(usersPath);
 businessDb.exec(
   `CREATE TABLE IF NOT EXISTS businesses(
-  id TEXT PRIMARY KEY,
+  business_id TEXT PRIMARY KEY,
   name TEXT UNIQUE NOT NULL,
   created_at INTEGER NOT NULL
   )`
 );
+
+businessDb.exec(
+  `CREATE TABLE IF NOT EXISTS reviews(
+  review_id TEXT PRIMARY KEY,
+  business_id TEXT,
+  review_user TEXT NOT NULL,
+  rating INTEGER NOT NULL,
+  comment TEXT,
+  FOREIGN KEY (business_id) REFERENCES businesses(business_id)
+)`
+);
+
 usersDb.exec(
     `CREATE TABLE IF NOT EXISTS users(
     id TEXT PRIMARY KEY,

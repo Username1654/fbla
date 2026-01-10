@@ -1,4 +1,9 @@
 import "./Page.css"
+let mock = {
+    business1: {
+        location:""
+    }
+}
 export default function page() {
     return (
       <div id="top">
@@ -6,6 +11,8 @@ export default function page() {
         <button onClick={() => window.location.replace("http://localhost:5173/login")} id="login">
           Login
         </button>
-      </div>
+        </div>
+
+
     );
 }
