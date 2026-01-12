@@ -60,13 +60,18 @@ label{
 h1{
 text-align: center;
   margin: 0 auto 0 auto;
+  grid-column: 2;
 }
 #bar{
   width: 100vw;
-  height: 7.8vh;
+  height: 10vh;
   background-color: rgb(25, 40, 55);
   margin: 0 0 0 0;
   border: 2px solid black;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  overflow: hidden;
+  padding-bottom: 10px;
 }
 h3{
   margin-top: 10px;
@@ -93,4 +98,12 @@ button{
 .bubble {
   opacity: 0.2;
   pointer-events: none;
+}
+#back-button{
+  width: 90%;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  background-color: #eee;
+  color: #000;
+  cursor: pointer;
 }
