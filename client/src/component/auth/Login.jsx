@@ -1,52 +1,43 @@
 import { useState } from 'react';
 import bubbleImage from '../../assets/bubble.gif';
-
+import "./Login.css"
 export default function Login() {
   const [username, setUsername] = useState("");
-  const [purpose, setPurpose] = useState("");
+  // const [purpose, setPurpose] = useState("");
   const [password, setPassword] = useState("");
-  function handleEvents(value) {
-    setUsername(value);
-    setPassword(value);
-    console.log(password);
-  }
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    let data = {
-      password,
-      username
-    };
-    console.log(data);
-    console.log(password);
-    console.log("Submitted username:", username);
-    fetch("http://localhost:5174/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(
-            "Network response was not ok: " + response.statusText
-          );
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Success:", data);
-        localStorage.setItem("loggedIn", true);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        localStorage.setItem("verified", false);
+    try {
+      console.log(password)
+      const res = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
       });
+      const data = await res.json();
+
+      if (data.success) {
+        sessionStorage.setItem("username", username);
+       alert(data.message)
+
+        location.replace("/page");
+      } else {
+        alert(data.message);
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      alert("Something went wrong");
+    }
   }
+
+
   return (
     <>
       <div id="bar">
         <h1>Login</h1>
+        <button id="back-button" onClick={()=>{window.location.href = "/page";}}>Back</button>
       </div>
       <div id="main">
         <img src={bubbleImage} />
@@ -72,8 +63,11 @@ export default function Login() {
           <br />
           <button onClick={handleSubmit}>Submit</button>
         </form>
+
         <img src={bubbleImage} alt="" />
+
       </div>
+
     </>
   );
 }
