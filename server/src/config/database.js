@@ -20,7 +20,9 @@ export const usersDb = new DatabaseSync(usersPath);
 businessDb.exec(
   `CREATE TABLE IF NOT EXISTS businesses(
   business_id TEXT PRIMARY KEY,
-  name TEXT UNIQUE NOT NULL,
+  business_name TEXT UNIQUE NOT NULL,
+  description TEXT,
+  business_type TEXT,
   created_at INTEGER NOT NULL
   )`
 );
@@ -32,6 +34,7 @@ businessDb.exec(
   review_user TEXT NOT NULL,
   rating INTEGER NOT NULL,
   comment TEXT,
+  created_at INTEGER NOT NULL,
   FOREIGN KEY (business_id) REFERENCES businesses(business_id)
 )`
 );

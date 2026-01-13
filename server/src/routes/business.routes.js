@@ -1,13 +1,30 @@
 import express from "express";
-import {getAllBusinesses, createBusiness} from "../services/businessService.js";
+import {getAllBusinesses, createBusiness, createReview, getBusiness} from "../services/businessService.js";
 const businessRouter = express.Router();
 
 businessRouter.get("/business", (req, res) => {
   try {
-    const users = getAllBusinesses();
+    const businesses = getAllBusinesses();
     res.json({
       success: true,
       businesses: businesses
+    })
+  } catch (err) {
+    console.error("Error getting business", err.message);
+    res.status(500).json({
+      success: false,
+      error: "Failed to retreive business!"
+    })
+  }
+});
+
+businessRouter.get("/business/:id", (req, res) => {
+  try {
+    const businessId = req.params.id;
+    const business = getBusiness(businessId)
+    res.json({
+      success: true,
+      business: business
     })
   } catch (err) {
     console.error("Error getting business", err.message);
@@ -22,12 +39,9 @@ businessRouter.get("/business", (req, res) => {
 
 businessRouter.post("/business", (req, res) => {
   try {
-    var { name } = req.body;
-    if (!name) return res.status(400).json({error: "name not given"});
-    name = name.trim();
+    var {businessName, description, businessType } = req.body;
 
-
-    const business = createBusiness(name);
+    const business = createBusiness(businessName, description, businessType);
     if (business.error) {
       return res.status(business.status).json({ error: business.error });
     }
@@ -37,6 +51,44 @@ businessRouter.post("/business", (req, res) => {
     res.status(500).json({
       success: false,
       error: "Failed to post business!"
+    })
+  }
+});
+
+// REVIEWS
+
+// businessRouter.get("/reviews", (req, res) => {
+//   try {
+//     const businesses = getAllBusinesses();
+//     res.json({
+//       success: true,
+//       businesses: businesses
+//     })
+//   } catch (err) {
+//     console.error("Error getting business", err.message);
+//     res.status(500).json({
+//       success: false,
+//       error: "Failed to retreive business!"
+//     })
+//   }
+// });
+
+// login POST requests
+
+businessRouter.post("/reviews", (req, res) => {
+  try {
+    var {businessId, reviewUser, rating, comment} = req.body;
+
+    const review = createReview(businessId, reviewUser, rating, comment);
+    if (review.error) {
+      return res.status(review.status).json({ error: review.error });
+    }
+    return res.status(201).json({ success: true, review });
+  } catch (err) {
+    console.error("Error posting review", err.message);
+    res.status(500).json({
+      success: false,
+      error: "Failed to post review!"
     })
   }
 });

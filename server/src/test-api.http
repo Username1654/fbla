@@ -9,3 +9,34 @@ Content-Type: application/json
     "username": "wazzap",
     "password": "muhahaha"
 }
+
+### Get all businesses
+
+GET http://localhost:5000/api/business
+
+### Get business by id
+
+GET http://localhost:5000/api/business/5a44d213-bc60-49fb-885a-b2bc2444d001
+
+### Post a business
+
+POST http://localhost:5000/api/business
+Content-Type: application/json
+
+{
+    "businessName": "Cyber Corp.",
+    "description": "Army Program",
+    "businessType": "Military"
+}
+
+### Post a review
+
+POST http://localhost:5000/api/reviews
+Content-Type: application/json
+
+{
+    "businessId": "5a44d213-bc60-49fb-885a-b2bc2444d001",
+    "reviewUser": "Wilzon",
+    "rating": "2",
+    "comment": "SO BAD LOLOLOL"
+}
