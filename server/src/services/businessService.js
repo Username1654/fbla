@@ -1,6 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 import { businessDb } from "../config/database.js";
 
+// Create business into database
+
 export function createBusiness(businessName, description, businessType) {
   const businessId = uuidv4();
   const createdAt = Date.now();
@@ -32,6 +34,9 @@ export function createBusiness(businessName, description, businessType) {
     }
   }
 }
+
+// Get ALL businesses
+
 export function getAllBusinesses() {
   return businessDb
     .prepare(
@@ -41,6 +46,8 @@ export function getAllBusinesses() {
     )
     .all();
 }
+
+// Get business by Id
 
 export function getBusiness(id) {
   var business = businessDb
@@ -61,8 +68,9 @@ export function getBusiness(id) {
   return business;
 }
 
-// REVIEWS
+// REVIEWS SECTION
 
+// Get Reviews by BUSINESS Id
 export function getReviewsByBusinessId(businessId) {
   const reviews = businessDb
     .prepare(`SELECT * FROM reviews WHERE business_id = ?`)
@@ -76,6 +84,7 @@ export function getReviewsByBusinessId(businessId) {
   return reviews;
 }
 
+// Create and send over a review
 export function createReview(businessId, reviewUser, rating, comment) {
   const reviewId = uuidv4();
   const createdAt = Date.now();

@@ -45,7 +45,7 @@ businessRouter.post("/business", (req, res) => {
     if (business.error) {
       return res.status(business.status).json({ error: business.error });
     }
-    return res.status(201).json({ success: true, business });
+    return res.status(201).json({ success: true, message: "Posted business successfully!", business });
   } catch (err) {
     console.error("Error posting business", err.message);
     res.status(500).json({
