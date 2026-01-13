@@ -1,18 +1,18 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Login from "./component/auth/Login.jsx";
-// import BusinessWidget from "./component/business/businessWidget";
-import Verify from "./component/auth/Verify.jsx";
-import Page from "./Page.jsx";
-import "./App.css";
+import Login from "./component/auth/Login";
+import Verify from "./component/auth/Verify";
+import Page from "./Page";
+import Business from "./Business";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
 
-        <Route path="/login" element={<Login />} />
-        <Route path='/verify' element={<Verify />} />
-        <Route path ="/page" element={<Page/>}/>
-        <Route path="/" element={<Navigate to="/verify" replace />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/page" element={<Page />} />
+          <Route path="/auth" element={<Verify />} />
+          <Route path="/business" element={<Business />} />
+          <Route path="/" element={<Navigate to="/auth" replace />} />
 
       </Routes>
     </BrowserRouter>
