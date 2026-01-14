@@ -78,7 +78,7 @@ export default function Login() {
 
           <br />
 
-          <label>Upload up to 20 photos (JPG, PNG, WEBP - max 5MB each)</label>
+          <label>Upload Photos</label>
 
           <input
             type="file"

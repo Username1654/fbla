@@ -7,7 +7,9 @@
   width: 90%;
   display: flex;
   height: 80vh;
-  background-color: #192837;
+  background-color: #101a24;
+  margin-top: 2em;
+  padding: 2em;
 }
 
 .review {
@@ -104,6 +106,8 @@ h2 {
   grid-row: 1;
 }
 .review {
+    display: flex;
+  flex-direction: column;
   background-color: #364553;
   color: white;
   font-weight: bold;
@@ -119,6 +123,7 @@ h2 {
 }
 
 .reviewCommentDisplay {
+  margin: 5px;
   background-color: #425363;
   height: fit-content;
   padding: 0.5em;

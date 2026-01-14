@@ -31,11 +31,9 @@ export default function Login() {
 
       if (data.success) {
         sessionStorage.setItem("username", username);
-       alert(data.message)
+        alert("Login successful!")
 
         location.replace("/page");
-      } else {
-        alert(data.message);
       }
     } catch (err) {
       console.error("Error:", err);

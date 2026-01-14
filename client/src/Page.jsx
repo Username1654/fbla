@@ -29,12 +29,9 @@ export default function Page() {
       const data = await res.json();
 
       if (data.success) {
-        sessionStorage.setItem("username", username);
-        alert(data.message);
 
-        location.replace("/page");
-      } else {
-        alert(data.message);
+        alert("Review successful!");
+        window.location.reload();
       }
     } catch (err) {}
   }
@@ -112,7 +109,7 @@ export default function Page() {
                 rows={5}
                 className="reviewTextArea"
               />
-              <button type="submit" class="submitButton">Submit Review</button>
+              <button type="submit" className="submitButton">Submit Review</button>
             </form>
           </div>
         ))}
