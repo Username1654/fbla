@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import bubbleImage from '../../assets/bubble.gif';
-import "./Login.css"
+import styles from "./Login.module.css"
 export default function Login() {
   const [username, setUsername] = useState("");
   // const [purpose, setPurpose] = useState("");
@@ -39,8 +39,8 @@ export default function Login() {
         <h1>Login</h1>
         <button id="back-button" onClick={()=>{window.location.href = "/page";}}>Back</button>
       </div>
-      <div id="main">
-        <img src={bubbleImage} />
+      <div id="main" className="main">
+        <img src={bubbleImage} className={styles.bubbleImage}/>
 
         <form id="login-form">
           <h3>Login or Sign Up</h3>
@@ -49,14 +49,14 @@ export default function Login() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Enter username"
-            className="inp"
+            className={styles.inp}
           />
           <br />
           <label>Password:</label>
           <input
             type="password"
             placeholder="Enter password"
-            className="inp"
+            className={styles.inp}
             onChange={(e) => setPassword(e.target.value)}
           />
 
@@ -64,7 +64,7 @@ export default function Login() {
           <button onClick={handleSubmit}>Submit</button>
         </form>
 
-        <img src={bubbleImage} alt="" />
+        <img src={bubbleImage} className={styles.bubbleImage} alt="" />
 
       </div>
 

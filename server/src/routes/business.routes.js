@@ -1,6 +1,41 @@
 import express from "express";
+import path from "path";
+import multer from "multer";
 import {getAllBusinesses, createBusiness, createReview, getBusiness} from "../services/businessService.js";
 const businessRouter = express.Router();
+
+// Multer setup
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(process.cwd(), 'src/uploads/'));
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+  }
+});
+
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 5 * 1024 * 1024,
+    files: 20
+  },
+  fileFilter: (req, file, cb) => {
+    const allowedTypes = /jpeg|jpg|png|webp/;
+    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+    const mimetype = allowedTypes.test(file.mimetype);
+    
+    if (mimetype && extname) {
+      return cb(null, true);
+    } else {
+      cb(new Error('Only image files are allowed'));
+    }
+  }
+});
+
+// === End of Multer Setup ===
 
 businessRouter.get("/business", (req, res) => {
   try {
@@ -37,11 +72,13 @@ businessRouter.get("/business/:id", (req, res) => {
 
 // login POST requests
 
-businessRouter.post("/business", (req, res) => {
+businessRouter.post("/business", upload.array("photos"), (req, res) => {
   try {
-    var {businessName, description, businessType } = req.body;
+    console.log(req.files)
+    const photos = req.files;
+    const {businessName, description, businessType } = req.body;
 
-    const business = createBusiness(businessName, description, businessType);
+    const business = createBusiness(businessName, description, businessType, photos);
     if (business.error) {
       return res.status(business.status).json({ error: business.error });
     }

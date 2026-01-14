@@ -1,58 +1,66 @@
-body {
-  overflow: scroll;
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.businesses {
+    width: 90%;
+  display: flex;
+  height: 80vh;
+    background-color: #192837;
+}
+.business {
+  display: flex;
+  flex-direction: column;
+  background-color: #323b44;
+  width: 20%;
+  height: 30vh;
+  margin: 0.5em;
+  border-radius: 20px;
 
 }
-.businesses{
-   display: grid;
-   grid-auto-rows: 200px;
-   overflow: scroll;
-  height: calc(100vh - 80px);
-  padding: 10px;
+.review {
+  display: flex;
+  padding: 20px;
 }
-.business{
-    display: flex;
-    /* padding: 20PX; */
-   background-color: #192837;
-   width: 100%;
-   height: fit-content;
-   display: flex;
-   justify-content: space-between;
+h2 {
+  text-align: center;
+  margin-top: 20px;
 }
-.review{
-    display: flex;
-    padding: 20PX;
+.cardImage {
+  width: 100%;
+  height: 10em;
+  object-fit: cover;
+  border-radius: 12px;
 }
-h2{
-    text-align: center;
-    margin-top: 20px;
-}
-.header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #192837;
-    color: white;
+.header {
+    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #192837;
+  color: white;
 }
 .login {
-    background-color: #4CAF50; /* Green */
-    width: 20%;
-    min-width: fit-content;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 12px;
+  background-color: #4caf50; /* Green */
+  width: 20%;
+  min-width: fit-content;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
 }
-.bsuiness{
-    background-color: #d0ff01;
-    color: rgb(0, 0, 0);
-    border-radius: 12px;
-    padding: 10px;
-    margin: 10px;
+.bsuiness {
+  background-color: #d0ff01;
+  color: rgb(0, 0, 0);
+  border-radius: 12px;
+  padding: 10px;
+  margin: 10px;
 }

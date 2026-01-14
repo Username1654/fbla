@@ -1,19 +1,26 @@
-import { useState } from 'react';
-import bubbleImage from './assets/bubble.gif';
-import "./business-styles.css"
+import { useState } from "react";
+import bubbleImage from "./assets/bubble.gif";
+import "./business-styles.css";
 export default function Login() {
   const [businessName, setBusinessName] = useState("");
   const [description, setDescription] = useState("");
   const [businessType, setBusinessType] = useState("");
+  const [photos, setPhotos] = useState([]);
   async function handleSubmit(e) {
     e.preventDefault();
     try {
+      if (!businessName || !description || !businessType || !photos) {
+        alert("Fill out all boxes.");
+        return;
+      }
+      let formData = new FormData();
+      formData.append("businessName", businessName);
+      formData.append("description", description);
+      formData.append("businessType", businessType);
+      photos.forEach(p => formData.append("photos", p));
       const res = await fetch("http://localhost:5000/api/business", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ businessName, description, businessType }),
+        body: formData
       });
       const data = await res.json();
 
@@ -24,15 +31,22 @@ export default function Login() {
     }
   }
 
-
   return (
     <>
+      {console.log(photos)}
       <div id="bar">
         <h1>Business</h1>
-        <button id="back-button" onClick={()=>{window.location.href = "/page";}}>Back</button>
+        <button
+          id="back-button"
+          onClick={() => {
+            window.location.href = "/page";
+          }}
+        >
+          Back
+        </button>
       </div>
       <div id="main">
-        <img src={bubbleImage} />
+        <img src={bubbleImage} className="bubbleImage"/>
 
         <form id="login-form">
           <h3>Create a Business</h3>
@@ -62,13 +76,57 @@ export default function Login() {
           />
 
           <br />
+
+          <label>Upload up to 20 photos (JPG, PNG, WEBP - max 5MB each)</label>
+
+          <input
+            type="file"
+            id="photos"
+            name="photos"
+            multiple
+            accept="image/jpeg,image/jpg,image/png,image/webp"
+            onChange={(e) => {
+              const files = Array.from(e.target.files);
+              files.forEach((file) => {
+                if (photos.length >= 20) {
+                  console.log("Maximum 20 photos allowed", "error");
+                  return;
+                }
+
+                if (file.size > 5 * 1024 * 1024) {
+                  console.log(
+                    `${file.name} is too large. Maximum 5MB per image.`,
+                    "error"
+                  );
+                  return;
+                }
+
+                const allowedTypes = [
+                  "image/jpeg",
+                  "image/jpg",
+                  "image/png",
+                  "image/webp",
+                ];
+                if (!allowedTypes.includes(file.type)) {
+                  console.log(
+                    `${file.name} is not a supported image format.`,
+                    "error"
+                  );
+                  return;
+                }
+
+                setPhotos((prev) => [...prev, file]);
+              });
+              e.target.value = "";
+            }}
+          ></input>
+          <div id="photoPreview" className="photo-preview"></div>
+
           <button onClick={handleSubmit}>Submit</button>
         </form>
 
-        <img src={bubbleImage} alt="" />
-
+        <img src={bubbleImage} alt="" className="bubbleImage"/>
       </div>
-
     </>
   );
 }
