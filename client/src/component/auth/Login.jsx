@@ -8,7 +8,18 @@ export default function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      console.log(password)
+      if (!username || !password) {
+        alert('Missing username or password.')
+        return;
+      }
+      if (password.length < 8) {
+        alert('Password must be greater than 8 characters.');
+        return;
+      }
+      if (username.length < 6) {
+        alert('Username must contain more than 6 characters.');
+        return;
+      }
       const res = await fetch("http://localhost:5000/api/login/users", {
         method: "POST",
         headers: {
@@ -37,7 +48,7 @@ export default function Login() {
     <>
       <div id="bar">
         <h1>Login</h1>
-        <button id="back-button" onClick={()=>{window.location.href = "/page";}}>Back</button>
+        <button id="back-button" className="button" onClick={()=>{window.location.href = "/page";}}>Back</button>
       </div>
       <div id="main" className="main">
         <img src={bubbleImage} className={styles.bubbleImage}/>
@@ -61,7 +72,7 @@ export default function Login() {
           />
 
           <br />
-          <button onClick={handleSubmit} style={{backgroundColor:"green"}}>Submit</button>
+          <button onClick={handleSubmit} className="button" style={{backgroundColor:"green"}}>Submit</button>
         </form>
 
         <img src={bubbleImage} className={styles.bubbleImage} alt="" />

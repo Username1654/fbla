@@ -20,8 +20,9 @@ router.get("/users", (req, res) => {
 
 // login POST requests
 
-router.post("/users", (req, res) => {
+router.post("/users", express.json(), (req, res) => {
   try {
+    console.log(req.body);
     var {username, password} = req.body;
     if (!username || !password) return res.status(400).json({error: "username or password not given"});
     username = username.trim();

@@ -79,7 +79,7 @@ h3{
   text-align: center;
   text-decoration: underline;
 }
-button{
+.button {
   width: 50%;
   margin-top: 15px;
   margin-left: 25%;

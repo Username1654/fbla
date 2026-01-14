@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import path from "path";
-import loginRoutes from "./routes/login.routes.js"
+import loginRoutes from "./routes/login.routes.js";
 import businessRoutes from "./routes/business.routes.js";
 import { fileURLToPath } from "url";
 const app = express();
@@ -13,18 +13,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use(
   cors({
-      origin: "http://localhost:5173",
-      credentials:true,
-    })
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
 );
 
-app.use('/uploads', express.static(path.join(__dirname, './uploads')))
-app.use('/api/login', loginRoutes);
-app.use('/api', businessRoutes);
-  app.use(express.json({ limit: '50mb' }));
-  app.use(express.urlencoded({ limit: '50mb', extended: true }));
-
-
+app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
+app.use("/api", businessRoutes);
+app.use("/api/login", loginRoutes);
 
 //GET routes
 // app.get("/", (req, res) => {
@@ -39,10 +35,7 @@ app.use('/api', businessRoutes);
 
 // login GET requests
 
-
-app.post("/login", (req,res) =>{
-
-})
+app.post("/login", (req, res) => {});
 
 //error handling
 app.use((req, res) => {

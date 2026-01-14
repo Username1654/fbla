@@ -128,10 +128,10 @@ businessRouter.post("/business", upload.array("photos"), (req, res) => {
 
 // login POST requests
 
-businessRouter.post("/reviews", (req, res) => {
+businessRouter.post("/reviews", express.json(), (req, res) => {
   try {
     var {businessId, reviewUser, rating, comment} = req.body;
-
+    console.log(req.body)
     const review = createReview(businessId, reviewUser, rating, comment);
     if (review.error) {
       return res.status(review.status).json({ error: review.error });

@@ -37,6 +37,7 @@ export default function Login() {
       <div id="bar">
         <h1>Business</h1>
         <button
+        className="button"
           id="back-button"
           onClick={() => {
             window.location.href = "/page";
@@ -76,7 +77,6 @@ export default function Login() {
           />
 
           <br />
-<<<<<<< HEAD
 
           <label>Upload up to 20 photos (JPG, PNG, WEBP - max 5MB each)</label>
 
@@ -90,12 +90,12 @@ export default function Login() {
               const files = Array.from(e.target.files);
               files.forEach((file) => {
                 if (photos.length >= 20) {
-                  console.log("Maximum 20 photos allowed", "error");
+                  alert("Maximum 20 photos allowed", "error");
                   return;
                 }
 
                 if (file.size > 5 * 1024 * 1024) {
-                  console.log(
+                  alert(
                     `${file.name} is too large. Maximum 5MB per image.`,
                     "error"
                   );
@@ -109,7 +109,7 @@ export default function Login() {
                   "image/webp",
                 ];
                 if (!allowedTypes.includes(file.type)) {
-                  console.log(
+                  alert(
                     `${file.name} is not a supported image format.`,
                     "error"
                   );
@@ -123,10 +123,7 @@ export default function Login() {
           ></input>
           <div id="photoPreview" className="photo-preview"></div>
 
-          <button onClick={handleSubmit}>Submit</button>
-=======
-          <button onClick={handleSubmit} style={{backgroundColor:"green"}}>Submit</button>
->>>>>>> 44893d55161b9e9ced10628d1fe3fc41f9132d5c
+          <button onClick={handleSubmit} className="button">Submit</button>
         </form>
 
         <img src={bubbleImage} alt="" className="bubbleImage"/>

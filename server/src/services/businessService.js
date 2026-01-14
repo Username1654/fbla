@@ -143,6 +143,7 @@ export function getReviewsByBusinessId(businessId) {
 export function createReview(businessId, reviewUser, rating, comment) {
   const reviewId = uuidv4();
   const createdAt = Date.now();
+  console.log("COMMENT", comment)
 
   try {
     businessDb
