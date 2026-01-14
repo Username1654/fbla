@@ -18,6 +18,8 @@ GET http://localhost:5000/api/business
 
 GET http://localhost:5000/api/business/5a44d213-bc60-49fb-885a-b2bc2444d001
 
+### Delete a business
+DELETE  http://localhost:5000/api/business/5ad3bb12-e471-4f28-8e9b-a4b1d2cf8c1a
 ### Post a business
 
 POST http://localhost:5000/api/business

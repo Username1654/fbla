@@ -1,7 +1,7 @@
 import express from "express";
 import {getAllBusinesses, createBusiness, createReview, getBusiness} from "../services/businessService.js";
 const businessRouter = express.Router();
-
+import { deleteBusiness } from "../services/businessService.js";
 businessRouter.get("/business", (req, res) => {
   try {
     const businesses = getAllBusinesses();
@@ -17,7 +17,20 @@ businessRouter.get("/business", (req, res) => {
     })
   }
 });
+businessRouter.delete("/business/:id", (req, res) => {
+  try {
+    const result = deleteBusiness(req.params.id);
 
+    if (!result.success) {
+      return res.status(result.status).json(result);
+    }
+
+    res.json(result);
+  } catch (err) {
+    console.error("Error deleting business", err.message);
+    res.status(500).json({ success: false, error: "Failed to delete business" });
+  }
+});
 businessRouter.get("/business/:id", (req, res) => {
   try {
     const businessId = req.params.id;
@@ -54,6 +67,9 @@ businessRouter.post("/business", (req, res) => {
     })
   }
 });
+
+
+
 
 // REVIEWS
 

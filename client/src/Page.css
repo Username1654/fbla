@@ -1,6 +1,6 @@
 body {
   overflow: scroll;
-
+  background-color: white;
 }
 .businesses{
    display: grid;
@@ -8,16 +8,11 @@ body {
    overflow: scroll;
   height: calc(100vh - 80px);
   padding: 10px;
+  background-color: white;
+    font-family:italic;
+
 }
-.business{
-    display: flex;
-    /* padding: 20PX; */
-   background-color: #192837;
-   width: 100%;
-   height: fit-content;
-   display: flex;
-   justify-content: space-between;
-}
+
 .review{
     display: flex;
     padding: 20PX;
@@ -25,6 +20,15 @@ body {
 h2{
     text-align: center;
     margin-top: 20px;
+}
+button{
+    cursor: pointer;
+    box-shadow: 10px 5px 5px rgba(0, 0, 0);
+    transition: all 0.5s;
+}
+button:hover{
+    box-shadow: 5px 2px 2px rgba(0, 0, 0);
+    padding: 15px;
 }
 .header{
     display: flex;
@@ -48,11 +52,58 @@ h2{
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 12px;
+    transition: all 0.5s;
 }
-.bsuiness{
-    background-color: #d0ff01;
-    color: rgb(0, 0, 0);
+.business{
+    overflow:hidden;
+     background-color: #192837;
+    color: rgb(255, 255, 255);
     border-radius: 12px;
     padding: 10px;
     margin: 10px;
+    text-align: center;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    box-shadow: 10px 10px 1px rgba(0, 0, 0);
+    transition: all 0.5s;
+}
+.business:hover{
+  margin: 15px;
+}
+.business h2{
+    margin-top: -10px;
+    font-size: 2rem;
+    font-weight: bold;
+    grid-column: 2;
+    grid-row: 1;
+    
+}
+.business ul{
+    grid-column: 1;
+    list-style-type: none;
+    padding: 0;
+    grid-row: 1;
+    text-align: start;
+    text-decoration: underline;
+    font-size: 1.5rem;
+}
+.business h3{
+    grid-column: 3;
+    grid-row: 1;
+}
+#review{
+    background-color: #fcfdff;
+    color: rgb(0, 0, 0);
+    border-radius: 12px;
+    margin: 10px 0;
+    padding: 10px;
+    grid-column: 3;
+    grid-row: span 1/3;
+    border: 2px solid rgb(238, 242, 13);
+    height: fit-content;
+    overflow: auto;
+    height: 100%;
 }

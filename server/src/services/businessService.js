@@ -34,6 +34,30 @@ export function createBusiness(businessName, description, businessType) {
     }
   }
 }
+export function deleteBusiness(businessId) {
+  // Step 1: Delete all reviews for this business
+  businessDb.prepare(`
+    DELETE FROM reviews WHERE business_id = ?
+  `).run(businessId);
+
+  // Step 2: Delete the business itself
+  const result = businessDb.prepare(`
+    DELETE FROM businesses WHERE business_id = ?
+  `).run(businessId);
+
+  if (result.changes === 0) {
+    return {
+      success: false,
+      error: "Business not found",
+      status: 404,
+    };
+  }
+
+  return {
+    success: true,
+    deleted: businessId,
+  };
+}
 
 // Get ALL businesses
 
