@@ -11,7 +11,7 @@ export default function Verify({ onVerified }) {
   };
 
   return (
-    <div style={{height:"100vh", display:"flex", flexDirection:"column", alignItems:"center"}}>
+    <div style={{height:"100vh", display:"flex", flexDirection:"column",color:"black", alignItems:"center"}}>
       <h2>Human Verification</h2>
       <p>Please confirm you are not a robot to continue.</p>
 

@@ -61,7 +61,7 @@ export default function Login() {
           />
 
           <br />
-          <button onClick={handleSubmit}>Submit</button>
+          <button onClick={handleSubmit} style={{backgroundColor:"green"}}>Submit</button>
         </form>
 
         <img src={bubbleImage} className={styles.bubbleImage} alt="" />

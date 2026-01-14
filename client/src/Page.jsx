@@ -1,7 +1,9 @@
 import "./Page.css";
-import { useState, useEffect } from "react";
+
 // import businesses from "./example.json"
 import Star from "./assets/Star";
+import { useEffect, useState } from "react";
+
 export default function Page() {
   const [businesses, setBusinesses] = useState([]); // start as array
   const [loading, setLoading] = useState(true);
@@ -31,45 +33,52 @@ export default function Page() {
       <div className="header">
         {sessionStorage.username ? (
           <button
-            onClick={() => {
-              window.location.href = "/business";
-            }}
-            className="login bsuiness"
+            onClick={() => window.location.href = "/business"}
+            className="login"
           >
             Add a business
           </button>
-        ) : (
-          <p></p>
-        )}
+        ) : null}
+
         <h1>Biz-Finder</h1>
+
         {sessionStorage.username ? (
           <h2>Logged in as: {sessionStorage.username}</h2>
         ) : (
           <button
-            onClick={() => {
-              window.location.href = "/login";
-            }}
+            onClick={() => window.location.href = "/login"}
             className="login"
           >
             Login
           </button>
         )}
       </div>
-      <br />
+
       <div className="businesses">
         {businesses.map((business) => (
-          <div key={business.businessId} className="business">
-
-              {business.photos && business.photos.length > 0 && (
-                <img
+          <div key={business.business_id} className="business">
+                            <img
                   className="cardImage"
                   src={`http://localhost:5000/uploads/${business.photos[0].filename}`}
                   alt={business.businessName}
                 />
-              )}
-              <h2>{business.businessName}</h2>
-
-            {/* <Star/> */}
+            <h2>{business.business_name}</h2>
+            <br />
+            <ul>
+           <li><p>- Description: {business.description}</p></li> 
+           <li><p>- Type: {business.business_type}</p></li> 
+            </ul>
+            <h3>Reviews</h3>
+            <div id="review">
+              <p>Reviews in progress!</p>
+            {business.reviews?.map((review, i) => (
+              <div key={i} >
+                
+                <p>{review.rating} ⭐</p>
+                <p>{review.comment}</p>
+              </div>
+            ))}
+            </div>
           </div>
         ))}
       </div>

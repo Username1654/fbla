@@ -76,6 +76,7 @@ export default function Login() {
           />
 
           <br />
+<<<<<<< HEAD
 
           <label>Upload up to 20 photos (JPG, PNG, WEBP - max 5MB each)</label>
 
@@ -123,6 +124,9 @@ export default function Login() {
           <div id="photoPreview" className="photo-preview"></div>
 
           <button onClick={handleSubmit}>Submit</button>
+=======
+          <button onClick={handleSubmit} style={{backgroundColor:"green"}}>Submit</button>
+>>>>>>> 44893d55161b9e9ced10628d1fe3fc41f9132d5c
         </form>
 
         <img src={bubbleImage} alt="" className="bubbleImage"/>
